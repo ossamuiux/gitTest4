@@ -1,0 +1,472 @@
+@charset "UTF-8";
+/*@font-face {
+    font-family: 'NanumSquare';
+    font-style: normal;
+    font-weight: 400;
+    src: url(../font/NanumSquareR.eot);
+    src: url(../font/NanumSquareR.eot?#iefix) format('embedded-opentype'),
+         url(../font/NanumSquareR.woff) format('woff'),
+         url(../font/NanumSquareR.ttf) format('truetype');
+}*/
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,address,code,em,img,strong,sub,sup,b,u,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figure,figcaption,footer,header,hgroup,menu,nav,section,main,audio,video {margin: 0; padding: 0;}
+
+/*html5추가 시멘틱엘리먼트를 익스하위버전에서 블럭으로 인식되도록함*/
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section,main {display: block}
+
+/* button태그에 손모양 커서 */
+button {cursor: pointer}
+/* 익스하위버전에서 이미지 선없애기 */
+fieldset,img {border: 0; vertical-align: top}
+/* 리스트 기호 빼기 */
+ol,ul {list-style: none}
+/* 태그 기본 기울임꼴 제거 */
+address,em {font-style: normal}
+/* 페이지안에서 가장 많은 링크색 지정 */
+a {text-decoration: none; /*color: #1c1c1c*/}
+/* iframe으로 외부컨텐츠를 연결했을때
+외부컨텐츠안쪽내용이 우리페이지에 영향을 주지못하도록 가려줌
+*/
+iframe {overflow: hidden; border: 0; vertical-align: top;}
+/* 칸의 선을 합치기, 칸의 간격없애기, 가로를 늘려줌 */
+table {border-collapse: collapse; border-spacing: 0; width: 100%; table-layout: fixed;}
+/* 굵기 빼고 헤딩태그 폰트크기를 body에 선언한 크기와 일치시킴 */
+h1,h2,h3,h4,h5,h6 {font-weight: normal; font-size: 100%}
+/* 폼요소의 높이가 다를때 요소끼리 세로정렬시킴 */
+input,select,textarea,button {vertical-align: middle; margin: 0; padding: 0}
+/* textarea 리사이즈기능 빼기 */
+textarea {resize: none}
+/* 페이지안의 모든 폰트의 줄간격을 1.5로 통일시킴
+모바일 크롬, 모바일 사파리 브라우져의 텍스트 자동확대 방지
+*/
+body {line-height: 1.5; -webkit-text-size-adjust:none}
+
+/* legend,caption,메뉴제목,섹션제목 블라인드 */
+legend,caption,.blind {position: absolute; overflow: hidden; clip: rect(0 0 0 0); margin: -1px; width: 1px; height: 1px}
+
+/* 공통스타일 */
+body,input,select,textarea,button,table {
+    font-family: 'Noto Sans KR','맑은 고딕','malgun gothic','돋움',dotum,sans-serif;
+    font-size: 15px;
+}
+
+a {color: #000;}
+
+.clearfix:after {
+    content: '';
+    clear: both;
+    display: block;
+}
+
+/* 스킵네비게이션 */
+#skipNavi a {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translateY(-100%);
+    width:100%;
+    line-height: 40px;
+    background:rgba(28, 28, 28, 0.6);
+    color: #fff;
+    text-align: center;
+}
+#skipNavi a:focus,
+#skipNavi a:active {
+    transform: translateY(0%);
+}
+
+
+
+/* placeholder공통 */
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #bbbbbb;
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #bbbbbb;
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #bbbbbb;
+  opacity: 1; /* Firefox */
+}
+
+/* 테이블 공통스타일 */
+/*테이블 제목 공통*/
+.tbl_wrap {margin-top: 100px;}
+.tbl_wrap h3 {
+    font-family: 'high1WonchuriTitle',sans-serif;
+    font-size: 30px;
+    color: #333;
+    position: relative;
+}
+.tbl_wrap h3:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -20px;
+    width:80px;
+    height: 3px;
+    background: #000;
+}
+.tbl_wrap h4 {
+    font-family: 'high1WonchuriTitle',sans-serif;
+    font-size: 25px;
+    color: #333;
+    margin-top: 40px;
+}
+.tbl_wrap .unit {float: right;}
+.tbl_wrap .warning { color: #9e897d; margin: 10px 0; padding-left: 25px; position: relative;}
+.tbl_wrap .warning:before {
+    content: '\f06a';
+    font-family: 'fontawesome',sans-serif;
+    font-size: 20px;
+    position: absolute;
+    left: 0;
+    top: -4px;
+}
+
+
+table thead th {
+    border: 1px solid #d9d9d9;
+    border-top:2px solid #333;
+    border-bottom: none;
+    height: 70px;
+    background: #f7f7f7;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+table tbody th,
+table tbody td {
+    border: 1px solid #d9d9d9;
+    height: 60px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: normal;
+}
+table td.left_td {text-align: left;}
+table td.left_td a:hover {text-decoration: underline;}
+
+
+/* 게시판 페이징 공통 */
+.tbl_wrap .paging_wrap {text-align: center; margin-top: 20px;}
+.tbl_wrap .paging_wrap .paging {display: inline-block; vertical-align: top;}
+.tbl_wrap .paging_wrap .paging .btn_paging {float: left; width:22px; height: 40px; text-indent: -9999px; background: url(../images/sprite_pc.png) no-repeat -392px -296px;}
+.tbl_wrap .paging_wrap .paging .btn_prev {background-position: -362px -168px; margin-right: 5px;}
+
+.tbl_wrap .paging_wrap .paging .btn_num {float: left; width:38px; height: 38px; border: 1px solid #eee; line-height: 38px; margin: 0 5px;}
+.tbl_wrap .paging_wrap .paging span.on {background: #bb0841; color: #fff; border-color:#bb0841;}
+
+.tbl_wrap .paging_wrap .paging .btn_next {background-position: -21px -417px; margin-left: 5px;}
+.tbl_wrap .paging_wrap .paging .btn_last {background-position: -438px -374px;}
+
+
+/* 폼요소 공통스타일 */
+input[type="text"],input[type="password"] {
+    border: 1px solid #ccc;
+    height: 50px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 20px;
+    color: #666;
+/*    outline: none;*/
+}
+/*
+input[type="text"]:focus,input[type="password"]:focus {border-color: #962639;}
+*/
+
+/* 체크박스 공통스타일 */
+.input_box {padding-top: 10px;}
+input[type="checkbox"] + label {position: relative; padding-left: 38px; cursor: pointer; line-height: 24px; display: inline-block;}
+input[type="checkbox"] + label .icon {
+    width:26px;
+    height: 26px;
+    border-radius: 100%;
+    border:2px solid #ddd;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+input[type="checkbox"] + label:before {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 2px;
+    width:24px;
+    height: 24px;
+    z-index: 10;
+    background: url(../images/icons.png) no-repeat 0 -40px;
+}
+input[type="checkbox"]:checked + label:before {
+    background-position: -40px -40px;
+}
+
+/* 라디오버튼 공통 */
+input[type="radio"] + label {position: relative; padding-left: 26px; cursor: pointer; display: inline-block; line-height: 24px;}
+input[type="radio"] + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 3px;
+    width:21px;
+    height: 21px;
+    background: url(../images/icons.png) no-repeat 0 -80px;
+}
+input[type="radio"]:checked + label:before {
+    background-position-x:-40px;
+}
+
+/* 셀렉트 공통 */
+.select_wrap {
+    display: inline-block;
+    width: 196px;
+    border: 2px solid #dddddd;
+    position: relative;
+}
+
+/* 익스 셀렉트 화살표 제거 */
+select::-ms-expand {display: none;}
+.select_wrap select {
+    width: 100%;
+    border: none;
+    height: 41px;
+    color: #999999;
+    padding-left: 10px;
+    -moz-appearance: none;/* 파폭 */
+    -webkit-appearance: none;/* 크롬,사파리 */
+    appearance: none;
+}
+.select_wrap:after {
+    content: '';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    margin-top: -3px;
+    width:12px;
+    height: 7px;
+    background: url(../images/icon_select_arr.png) no-repeat;
+}
+
+/* input file 공통스타일 */
+.file_wrap {
+    border: 2px solid #ddd;
+    width:466px;
+    padding-right: 98px;
+    box-sizing: border-box;
+    position: relative;
+    float: left;
+}
+.file_wrap input[type="text"] {height: 41px;background: none !important;}
+.file_wrap label {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width:98px;
+    line-height: 41px;
+    color:#009223;
+    font-weight: 500;
+    letter-spacing: -0.05em;
+    text-align: center;
+    cursor: pointer;
+}
+.file_wrap label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width:2px;
+    height: 16px;
+    margin-top: -8px;
+    background: #e8e8e8;
+}
+
+#wrap {min-width: 1280px;}
+
+#header {background: rgba(110,0,0,0.9); position: fixed; left: 0; top: 0px; width:100%; z-index: 9999; transition: all 0.5s;}
+#header.on {transform: translateY(-180px);}
+
+#header .sticky_popup {height: 80px;background: #222;}
+
+#header .header_inner {width:1280px; height: 100px; margin: 0 auto;}
+#header .header_inner .logo {float: left; margin-top: 5px;}
+
+
+
+
+
+/* 푸터 공통 */
+#footer {background: #333337; position: relative; padding-bottom: 50px;}
+#footer:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50px;
+    width:100%;
+    height: 1px;
+    background: #4d4d50;
+}
+#footer .top_footer {width:1132px; height: 50px;  margin: 0 auto;}
+#footer .top_footer .list_tel {float: left; margin-top: 12px;}
+#footer .top_footer .list_tel dt {
+    float: left;
+    color: #999;
+    padding-right: 10px;
+    position: relative;
+}
+#footer .top_footer .list_tel dt:before {
+    content: '';
+    display: inline-block;
+    width:31px;
+    height: 20px;
+    background: url(../images/ico_sns.png) no-repeat;
+    background-position: 0 -226px;
+    vertical-align: -2px;
+    margin-right: 5px;
+}
+#footer .top_footer .list_tel dt:after {
+    content: '';
+    position: absolute;
+    right:0;
+    top: 6px;
+    width:1px;
+    height: 15px;
+    background: #666;
+}
+#footer .top_footer .list_tel dd {
+    float: left;
+    color: #fff;
+    padding-left: 10px;
+    margin-right: 50px;
+}
+
+#footer .top_footer .list_tel .tel2:before {
+    width:16px;
+    height: 21px;
+    background-position: 0 -200px;
+    vertical-align: -3px;
+}
+#footer .top_footer .list_tel .tel3:before {
+    width:16px;
+    height: 21px;
+    background-position: -20px -200px;
+    vertical-align: -4px;
+}
+
+/* 푸터 패밀리사이트 */
+#footer .top_footer .family {float:right; position: relative; width:265px;}
+#footer .top_footer .family .btn_family {
+    width: 100%;
+    height: 50px;
+    border: none;
+    border-left: 1px solid #4d4d50;
+    border-right: 1px solid #4d4d50;
+    background: none;
+    color: #8f8f91;
+    text-align: left;
+    padding: 0 20px;
+    position: relative;
+}
+#footer .top_footer .family .btn_family:before {
+    content: '';
+    position: absolute;
+    right:20px;
+    top: 25px;
+    width:13px;
+    height: 1px;
+    background: #fff;
+}
+#footer .top_footer .family .btn_family:after {
+    content: '';
+    position: absolute;
+    right:26px;
+    top: 19px;
+    width:1px;
+    height: 13px;
+    background: #fff;
+    transition: all 0.5s;
+}
+#footer .top_footer .family .btn_family.on:after {
+    transform: rotateZ(-90deg);
+    opacity: 0;
+}
+
+
+#footer .top_footer .family .list_family {
+    position: absolute;
+    left: 0;
+    top: 50px;
+    width: 100%;
+    border-left: 1px solid #4d4d50;
+    border-right: 1px solid #4d4d50;
+    box-sizing: border-box;
+    height: 195px;
+    overflow: auto;
+    display: none;
+    background: #333337;
+}
+#footer .top_footer .family .list_family li {border-bottom: 1px solid #4d4d50;}
+#footer .top_footer .family .list_family a {display: block; color: #fff; line-height: 38px; padding-left: 20px;}
+
+#footer .bottom_footer {text-align: center; padding-top: 40px;}
+#footer .bottom_footer .sns a {
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+    text-indent: -9999px;
+    background: url(../images/ico_sns.png) no-repeat;
+    background-position: 0 -150px;
+    margin: 0 13px;
+}
+#footer .bottom_footer .sns a:nth-child(2) {
+    background-position: 0 0;
+}
+#footer .bottom_footer .sns a:nth-child(3) {
+    background-position: 0 -50px;
+}
+#footer .bottom_footer .sns a:nth-child(4) {
+    background-position: 0 -100px;
+}
+#footer .bottom_footer .sns a:hover {
+    background-position-y: -300px;
+}
+#footer .bottom_footer .sns a:nth-child(2):hover {
+    background-position-y: -250px;
+}
+#footer .bottom_footer .sns a:nth-child(3):hover {
+    background-position-y: -350px;
+}
+#footer .bottom_footer .sns a:nth-child(4):hover {
+    background-position-y: -400px;
+}
+
+/* 개인정보메뉴 */
+#footer .bottom_footer .footer_menu {margin-top: 20px;}
+#footer .bottom_footer .footer_menu li {display: inline-block; padding: 0 8px; position:relative;}
+#footer .bottom_footer .footer_menu li:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 7px;
+    width:1px;
+    height: 14px;
+    background: #666;
+}
+#footer .bottom_footer .footer_menu li:first-child:before {
+    display: none;
+}
+#footer .bottom_footer .footer_menu li a {color: #8f8f91; font-size: 14px;}
+#footer .bottom_footer .footer_menu li.private a {color: #fff;}
+
+#footer .bottom_footer address {color: #999; margin-top: 10px; font-size: 14px;}
+#footer .bottom_footer address span {margin-right: 20px;}
+
+#footer .bottom_footer .copy {color: #666; font-size: 14px; margin-top: 5px;}
+
+
+
+
+
+
+
+
+
+
+
